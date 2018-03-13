@@ -12,6 +12,9 @@
 		964225AF2057ADE700153E06 /* TestViewController02.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964225AE2057ADE700153E06 /* TestViewController02.swift */; };
 		964225B12057B00200153E06 /* TestViewController03.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964225B02057B00200153E06 /* TestViewController03.swift */; };
 		964225B32057B2D000153E06 /* TestViewController04.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964225B22057B2D000153E06 /* TestViewController04.swift */; };
+		964225B52057B3CD00153E06 /* TestViewController05.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964225B42057B3CD00153E06 /* TestViewController05.swift */; };
+		964225B72057B61200153E06 /* TestViewController06.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964225B62057B61200153E06 /* TestViewController06.swift */; };
+		964225B92057B6B000153E06 /* TestViewController07.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964225B82057B6B000153E06 /* TestViewController07.swift */; };
 		96D518CE204EA01000FA23E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D518CD204EA01000FA23E6 /* AppDelegate.swift */; };
 		96D518D0204EA01000FA23E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D518CF204EA01000FA23E6 /* ViewController.swift */; };
 		96D518D3204EA01000FA23E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96D518D1204EA01000FA23E6 /* Main.storyboard */; };
@@ -26,6 +29,9 @@
 		964225AE2057ADE700153E06 /* TestViewController02.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController02.swift; sourceTree = "<group>"; };
 		964225B02057B00200153E06 /* TestViewController03.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController03.swift; sourceTree = "<group>"; };
 		964225B22057B2D000153E06 /* TestViewController04.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController04.swift; sourceTree = "<group>"; };
+		964225B42057B3CD00153E06 /* TestViewController05.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController05.swift; sourceTree = "<group>"; };
+		964225B62057B61200153E06 /* TestViewController06.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController06.swift; sourceTree = "<group>"; };
+		964225B82057B6B000153E06 /* TestViewController07.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController07.swift; sourceTree = "<group>"; };
 		96D518CA204EA01000FA23E6 /* MicrosoftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MicrosoftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96D518CD204EA01000FA23E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96D518CF204EA01000FA23E6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +107,9 @@
 				964225AE2057ADE700153E06 /* TestViewController02.swift */,
 				964225B02057B00200153E06 /* TestViewController03.swift */,
 				964225B22057B2D000153E06 /* TestViewController04.swift */,
+				964225B42057B3CD00153E06 /* TestViewController05.swift */,
+				964225B62057B61200153E06 /* TestViewController06.swift */,
+				964225B82057B6B000153E06 /* TestViewController07.swift */,
 			);
 			path = MicrosoftDemo;
 			sourceTree = "<group>";
@@ -230,10 +239,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				96D518D0204EA01000FA23E6 /* ViewController.swift in Sources */,
+				964225B52057B3CD00153E06 /* TestViewController05.swift in Sources */,
+				964225B72057B61200153E06 /* TestViewController06.swift in Sources */,
 				964225B32057B2D000153E06 /* TestViewController04.swift in Sources */,
 				96D518E1204EA03E00FA23E6 /* TestViewController00.swift in Sources */,
 				96D518CE204EA01000FA23E6 /* AppDelegate.swift in Sources */,
 				964225B12057B00200153E06 /* TestViewController03.swift in Sources */,
+				964225B92057B6B000153E06 /* TestViewController07.swift in Sources */,
 				964225AF2057ADE700153E06 /* TestViewController02.swift in Sources */,
 				964225AD2057A47C00153E06 /* TestViewController01.swift in Sources */,
 			);
