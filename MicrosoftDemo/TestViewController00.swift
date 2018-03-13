@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TestViewController: UIViewController {
+class TestViewController00: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +16,10 @@ class TestViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func popAction(_ sender: UIButton) {
+        self.popVC()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

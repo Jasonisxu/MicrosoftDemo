@@ -8,17 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		5F61BB24DEFEFC325A36B56D /* Pods_MicrosoftDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 295EE038194330CC6EDEFEB5 /* Pods_MicrosoftDemo.framework */; };
+		964225AD2057A47C00153E06 /* TestViewController01.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964225AC2057A47C00153E06 /* TestViewController01.swift */; };
 		96D518CE204EA01000FA23E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D518CD204EA01000FA23E6 /* AppDelegate.swift */; };
 		96D518D0204EA01000FA23E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D518CF204EA01000FA23E6 /* ViewController.swift */; };
 		96D518D3204EA01000FA23E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96D518D1204EA01000FA23E6 /* Main.storyboard */; };
 		96D518D5204EA01000FA23E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96D518D4204EA01000FA23E6 /* Assets.xcassets */; };
 		96D518D8204EA01000FA23E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96D518D6204EA01000FA23E6 /* LaunchScreen.storyboard */; };
-		96D518E1204EA03E00FA23E6 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D518DF204EA03E00FA23E6 /* TestViewController.swift */; };
-		96D518E2204EA03E00FA23E6 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96D518E0204EA03E00FA23E6 /* TestViewController.xib */; };
+		96D518E1204EA03E00FA23E6 /* TestViewController00.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D518DF204EA03E00FA23E6 /* TestViewController00.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		295EE038194330CC6EDEFEB5 /* Pods_MicrosoftDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MicrosoftDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		964225AC2057A47C00153E06 /* TestViewController01.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController01.swift; sourceTree = "<group>"; };
 		96D518CA204EA01000FA23E6 /* MicrosoftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MicrosoftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96D518CD204EA01000FA23E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96D518CF204EA01000FA23E6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -26,8 +27,7 @@
 		96D518D4204EA01000FA23E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96D518D7204EA01000FA23E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		96D518D9204EA01000FA23E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		96D518DF204EA03E00FA23E6 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
-		96D518E0204EA03E00FA23E6 /* TestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
+		96D518DF204EA03E00FA23E6 /* TestViewController00.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController00.swift; sourceTree = "<group>"; };
 		96D518E3204EA20300FA23E6 /* MicrosoftDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MicrosoftDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		BB8860B56B94DDFC97E115E6 /* Pods-MicrosoftDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MicrosoftDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-MicrosoftDemo/Pods-MicrosoftDemo.release.xcconfig"; sourceTree = "<group>"; };
 		EEEFAD70BE3DAEA044050B2E /* Pods-MicrosoftDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MicrosoftDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MicrosoftDemo/Pods-MicrosoftDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -84,14 +84,14 @@
 			isa = PBXGroup;
 			children = (
 				96D518CD204EA01000FA23E6 /* AppDelegate.swift */,
-				96D518DF204EA03E00FA23E6 /* TestViewController.swift */,
-				96D518E0204EA03E00FA23E6 /* TestViewController.xib */,
 				96D518CF204EA01000FA23E6 /* ViewController.swift */,
 				96D518D1204EA01000FA23E6 /* Main.storyboard */,
 				96D518D4204EA01000FA23E6 /* Assets.xcassets */,
 				96D518D6204EA01000FA23E6 /* LaunchScreen.storyboard */,
 				96D518D9204EA01000FA23E6 /* Info.plist */,
 				96D518E3204EA20300FA23E6 /* MicrosoftDemo-Bridging-Header.h */,
+				96D518DF204EA03E00FA23E6 /* TestViewController00.swift */,
+				964225AC2057A47C00153E06 /* TestViewController01.swift */,
 			);
 			path = MicrosoftDemo;
 			sourceTree = "<group>";
@@ -161,7 +161,6 @@
 			files = (
 				96D518D8204EA01000FA23E6 /* LaunchScreen.storyboard in Resources */,
 				96D518D5204EA01000FA23E6 /* Assets.xcassets in Resources */,
-				96D518E2204EA03E00FA23E6 /* TestViewController.xib in Resources */,
 				96D518D3204EA01000FA23E6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,8 +221,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				96D518D0204EA01000FA23E6 /* ViewController.swift in Sources */,
-				96D518E1204EA03E00FA23E6 /* TestViewController.swift in Sources */,
+				96D518E1204EA03E00FA23E6 /* TestViewController00.swift in Sources */,
 				96D518CE204EA01000FA23E6 /* AppDelegate.swift in Sources */,
+				964225AD2057A47C00153E06 /* TestViewController01.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,7 +371,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "MicrosoftDemo/MicrosoftDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -389,7 +389,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MicrosoftDemo/MicrosoftDemo-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -14,11 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-//        self.isNavBarHidden = true
-    }
-    
-    @IBAction func testAction(_ sender: UIButton) {
-        self.pushVC(TestViewController())
+        self.isNavBarHidden = true
     }
 
     override func didReceiveMemoryWarning() {
