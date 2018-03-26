@@ -1,17 +1,26 @@
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
+platform :ios, ‘9.0’
 use_frameworks!
 
-target ‘MicrosoftDemo’ do
+target ‘CollectHappiness’ do
 
-pod 'EZSwiftExtensions'
+pod 'AFNetworking', '~> 3.1.0'
+pod 'BlocksKit', '2.2.5'
+pod 'SDWebImage'
+pod 'MJRefresh'
+pod 'MBProgressHUD'
+pod 'IQKeyboardManager'
+pod 'DZNEmptyDataSet'
+pod 'MJExtension'
+pod 'ZYCornerRadius', '~> 1.0.2'
+pod 'Masonry'
+pod 'TZImagePickerController'
+pod 'WZLBadge'
+pod 'PYSearch'
+pod 'UMengUShare/UI'
+pod 'UMengUShare/Social/ReducedWeChat'
+pod 'UMengUShare/Social/ReducedQQ'
+pod 'UMengUShare/Social/ReducedSina'
+pod 'UMengAnalytics-NO-IDFA'
+pod 'pop'
 
-end
-
-post_install do |installer|
-    installer.pods_project.targets.each do |target|
-        target.build_configurations.each do |config|
-            config.build_settings['SWIFT_VERSION'] = '3.2'
-        end
-    end
 end
