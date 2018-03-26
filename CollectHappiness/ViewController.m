@@ -40,7 +40,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self addDataAction];
 }
 
 - (void)viewDidLoad {
@@ -51,6 +50,7 @@
     
     [self addUIMasonry];
     
+    [self addDataAction];
 }
 
 #pragma mark - data

@@ -17,6 +17,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [CookieHelp addUserAgentAction];
+    
+    [CookieHelp cookieGetAction];
+    
     return YES;
 }
 

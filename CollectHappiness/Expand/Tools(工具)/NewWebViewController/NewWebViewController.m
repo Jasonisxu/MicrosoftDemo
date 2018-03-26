@@ -40,6 +40,12 @@
     [self addLeftButton];
     
     [self addRightButton];
+    
+    // 添加轻扫手势
+    UISwipeGestureRecognizer *rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(backNative)];
+    [rightSwipe setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    [self.webView addGestureRecognizer:rightSwipe];
+
 }
 
 #pragma mark - Masonry
@@ -127,7 +133,7 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [HUD hide];
     self.navigationItem.title = [self.webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-   
+    [CookieHelp cookieGetAndSaveAction];
 }
 
 //网页加载错误
@@ -228,6 +234,8 @@
     }
     return _closeItem;
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
