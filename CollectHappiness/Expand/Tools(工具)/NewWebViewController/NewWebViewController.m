@@ -8,6 +8,8 @@
 
 #import "NewWebViewController.h"
 #import "UmengUtil.h"
+#import <JavaScriptCore/JavaScriptCore.h>
+#import "ScanViewController.h"
 
 @interface NewWebViewController ()<UIWebViewDelegate>
 // 外部传来的url
@@ -18,34 +20,19 @@
 @property (nonatomic, strong) UIBarButtonItem *closeItem;
 //员工任务详情分享的url
 @property (nonatomic, copy) NSString *taskUrlString;
-//判断当前web有没有加载过排行榜
-@property (nonatomic, assign) BOOL isHaveRankings;
 
 @end
 
 @implementation NewWebViewController
 
-//- (void)viewWillAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-//    
-//    if (!self.nowUrlString) {
-//        [self.webView reload];
-//    }
-//}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    [self addLeftButton];
-    
-    [self addRightButton];
     
     // 添加轻扫手势
     UISwipeGestureRecognizer *rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(backNative)];
     [rightSwipe setDirection:(UISwipeGestureRecognizerDirectionRight)];
     [self.webView addGestureRecognizer:rightSwipe];
-
 }
 
 #pragma mark - Masonry
@@ -86,11 +73,6 @@
     if (_webView == nil) {
         
         _webView = [[UIWebView alloc] initWithFrame:CGRectZero];
-//        if (self.hidesBottomBarWhenPushed == YES) {
-//            _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - SCREEN_NAV_HEIGHT)];
-//        } else {
-//            _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - SCREEN_NAV_HEIGHT - SCREEN_TABBAR_HEIGHT)];
-//        }
         _webView.backgroundColor = WHITE_COLOR;
         _webView.delegate = self;
         _webView.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
@@ -107,38 +89,30 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request
  navigationType:(UIWebViewNavigationType)navigationType
 {
-
-    // 当前请求的Url
-    NSString *urlString = GetString(request.URL);
-    NSLog(@"webUrlString:  %@",urlString);
-    NSString *validDomain = GetString(request.URL.host);
-    // 请求头的一些信息
-    NSMutableURLRequest *mutableRequest = [request mutableCopy];
-    NSDictionary *requestHeaders = request.allHTTPHeaderFields;
-    //    NSLog(@"requestHeaders:%@",requestHeaders);
-    // 请求方式
-    NSString *methodString = GetString(request.HTTPMethod);
-   //    NSLog(@"HTTPMethod:  %@",methodString);
-
     return YES;
-
-}
-
-//开始加载网页
-- (void)webViewDidStartLoad:(UIWebView *)webView{
-//    [HUD showLoadingToView:self.view];
 }
 
 //网页加载完成
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
-    [HUD hide];
-    self.navigationItem.title = [self.webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     [CookieHelp cookieGetAndSaveAction];
-}
-
-//网页加载错误
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
-    [HUD hide];
+    
+    JSContext *context = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+    //定义好JS要调用的方法，finish就是调用的方法名
+    context[@"saoma"] = ^() {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[ScanViewController new]];
+            [self presentViewController:nav animated:YES completion:nil];
+        });
+    };
+    
+    
+//    context[@"share"] = ^() {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"方式二" message:@"这是OC原生的弹出窗" delegate:self cancelButtonTitle:@"收到" otherButtonTitles:nil];
+//            [alertView show];
+//        });
+//    };
+  
 }
 
 
@@ -172,14 +146,6 @@
     }];
 }
 
-#pragma mark - 添加关闭按钮
-
-- (void)addLeftButton
-{
-    //同时设置返回按钮和关闭按钮为导航栏左边的按钮
-    self.navigationItem.leftBarButtonItems = @[self.backItem, self.closeItem];
-    
-}
 
 
 
@@ -194,45 +160,6 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
     
-}
-
-//关闭H5页面，直接回到原生页面
-- (void)closeNative
-{
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
-
-
-#pragma mark - init
-
-- (UIBarButtonItem *)backItem
-{
-    if (!_backItem) {
-        _backItem = [[UIBarButtonItem alloc] init];
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        //这是一张“<”的图片，可以让美工给切一张
-        UIImage *image = [UIImage imageNamed:@"icon-back-white"];
-        [btn setImage:image forState:UIControlStateNormal];
-        [btn setTitle:@"返回" forState:UIControlStateNormal];
-        [btn addTarget:self action:@selector(backNative) forControlEvents:UIControlEventTouchUpInside];
-        [btn.titleLabel setFont:[UIFont systemFontOfSize:17]];
-        [btn setTitleColor:WHITE_COLOR forState:UIControlStateNormal];
-        //字体的多少为btn的大小
-        [btn sizeToFit];
-        //左对齐
-        btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        btn.frame = CGRectMake(0, 0, 60, 40);
-        _backItem.customView = btn;
-    }
-    return _backItem;
-}
-
-- (UIBarButtonItem *)closeItem
-{
-    if (!_closeItem) {
-        _closeItem = [[UIBarButtonItem alloc] initWithTitle:@"关闭" style:UIBarButtonItemStylePlain target:self action:@selector(closeNative)];
-    }
-    return _closeItem;
 }
 
 

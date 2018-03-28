@@ -68,6 +68,10 @@
 		96D6717D2068983300C37921 /* UIImage+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D6713D2068983300C37921 /* UIImage+Image.m */; };
 		96D6717E2068983300C37921 /* UIColor+RCColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D671412068983300C37921 /* UIColor+RCColor.m */; };
 		96D6717F2068983300C37921 /* LXSpaceUICollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D671432068983300C37921 /* LXSpaceUICollectionViewFlowLayout.m */; };
+		96F2E61A206B3D9200BC0206 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96F2E619206B3D9100BC0206 /* JavaScriptCore.framework */; };
+		96F2E620206B41E500BC0206 /* ReadableCodeMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F2E61C206B41E500BC0206 /* ReadableCodeMaskView.m */; };
+		96F2E621206B41E500BC0206 /* ReadableCodeScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F2E61D206B41E500BC0206 /* ReadableCodeScanView.m */; };
+		96F2E624206B454500BC0206 /* ScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F2E623206B454400BC0206 /* ScanViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -192,6 +196,13 @@
 		96D671472068983300C37921 /* AllUrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllUrl.h; sourceTree = "<group>"; };
 		96D671482068983300C37921 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		96D671492068983300C37921 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		96F2E619206B3D9100BC0206 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		96F2E61C206B41E500BC0206 /* ReadableCodeMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadableCodeMaskView.m; sourceTree = "<group>"; };
+		96F2E61D206B41E500BC0206 /* ReadableCodeScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadableCodeScanView.m; sourceTree = "<group>"; };
+		96F2E61E206B41E500BC0206 /* ReadableCodeMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadableCodeMaskView.h; sourceTree = "<group>"; };
+		96F2E61F206B41E500BC0206 /* ReadableCodeScanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadableCodeScanView.h; sourceTree = "<group>"; };
+		96F2E622206B454400BC0206 /* ScanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScanViewController.h; sourceTree = "<group>"; };
+		96F2E623206B454400BC0206 /* ScanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScanViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +210,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96F2E61A206B3D9200BC0206 /* JavaScriptCore.framework in Frameworks */,
 				0894D86DCCB643E08DA0E5E9 /* Pods_CollectHappiness.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,6 +221,7 @@
 		2B5F287F7E448C31645F441F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				96F2E619206B3D9100BC0206 /* JavaScriptCore.framework */,
 				72BD7180AD4FE7DDBCD52173 /* Pods_CollectHappiness.framework */,
 			);
 			name = Frameworks;
@@ -254,6 +267,8 @@
 				96D66FED206892DC00C37921 /* LaunchScreen.storyboard */,
 				96D66FF0206892DC00C37921 /* Info.plist */,
 				96D66FF1206892DC00C37921 /* main.m */,
+				96F2E622206B454400BC0206 /* ScanViewController.h */,
+				96F2E623206B454400BC0206 /* ScanViewController.m */,
 			);
 			path = CollectHappiness;
 			sourceTree = "<group>";
@@ -435,6 +450,7 @@
 		96D670FF2068983300C37921 /* Tools(工具) */ = {
 			isa = PBXGroup;
 			children = (
+				96F2E61B206B41E500BC0206 /* scanCode */,
 				96D671002068983300C37921 /* UmengUtil */,
 				96D6710B2068983300C37921 /* LayerHelp */,
 				96D6710E2068983300C37921 /* NewWebViewController */,
@@ -637,6 +653,17 @@
 			path = cofigUrl;
 			sourceTree = "<group>";
 		};
+		96F2E61B206B41E500BC0206 /* scanCode */ = {
+			isa = PBXGroup;
+			children = (
+				96F2E61C206B41E500BC0206 /* ReadableCodeMaskView.m */,
+				96F2E61D206B41E500BC0206 /* ReadableCodeScanView.m */,
+				96F2E61E206B41E500BC0206 /* ReadableCodeMaskView.h */,
+				96F2E61F206B41E500BC0206 /* ReadableCodeScanView.h */,
+			);
+			path = scanCode;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -780,10 +807,12 @@
 				96D6717F2068983300C37921 /* LXSpaceUICollectionViewFlowLayout.m in Sources */,
 				96D6714A2068983300C37921 /* NBConstant.m in Sources */,
 				96D671762068983300C37921 /* UINavigationController+SXFullScreen.m in Sources */,
+				96F2E624206B454500BC0206 /* ScanViewController.m in Sources */,
 				96D6716D2068983300C37921 /* TBCityIconInfo.m in Sources */,
 				96D6716A2068983300C37921 /* NewWebViewController.m in Sources */,
 				96D66FF2206892DC00C37921 /* main.m in Sources */,
 				96D671692068983300C37921 /* LayerHelp.m in Sources */,
+				96F2E621206B41E500BC0206 /* ReadableCodeScanView.m in Sources */,
 				96D671632068983300C37921 /* TYTabPagerBarCell.m in Sources */,
 				96D6714E2068983300C37921 /* CLImageModel.m in Sources */,
 				96D671502068983300C37921 /* NSString+Cache.m in Sources */,
@@ -795,6 +824,7 @@
 				96D6717A2068983300C37921 /* UIViewController+LXNavigationItem.m in Sources */,
 				96D6716E2068983300C37921 /* HQFontImage.m in Sources */,
 				96D671532068983300C37921 /* MapObject.m in Sources */,
+				96F2E620206B41E500BC0206 /* ReadableCodeMaskView.m in Sources */,
 				96D671522068983300C37921 /* MapObject+Subscripts.m in Sources */,
 				96D671792068983300C37921 /* NSObject+SXRuntime.m in Sources */,
 				96D671582068983300C37921 /* HUD.m in Sources */,

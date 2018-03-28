@@ -26,9 +26,11 @@
 - (id)setRightImageBarButtonItemImage:(NSString *)image action:(void(^)(LXButton *button))action
 {
     LXButton *rightButton = [LXButton buttonWithType:UIButtonTypeCustom];
-    [rightButton setFrame:CGRectMake(0, 0, 40, 40)];
+    [rightButton setFrame:CGRectMake(0, 0, 60, 40)];
 //    [rightButton setImage:[HQFontImageDictionary iconWithName:image fontSize:23 color:WHITE_COLOR] forState:UIControlStateNormal];
-    [rightButton setImage:GetImage(image) forState:UIControlStateNormal];
+//    [rightButton setImage:GetImage(image) forState:UIControlStateNormal];
+    [rightButton setTitle:image forState:UIControlStateNormal];
+    [rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     rightButton.action = action;
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
