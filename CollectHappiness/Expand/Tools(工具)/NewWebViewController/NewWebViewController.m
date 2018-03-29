@@ -92,10 +92,12 @@
     return YES;
 }
 
+
 //网页加载完成
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [CookieHelp cookieGetAndSaveAction];
-    
+    [self addTDSDKACtion];
+
     JSContext *context = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     //定义好JS要调用的方法，finish就是调用的方法名
     context[@"saoma"] = ^() {
@@ -162,7 +164,20 @@
     
 }
 
-
+- (void)addTDSDKACtion {
+    // 获取设备管理器实例
+    FMDeviceManager_t *manager = [FMDeviceManager sharedManager];
+    
+    /*
+     * 获取设备指纹黑盒数据，请确保在应用开启时已经对SDK进行初始化，切勿在get的时候才初始化
+     * 如果此处获取到的blackBox特别长(超过400字节)，说明初始化尚未完成(一般需要1-3秒)，或者由于网络问题导致初始化失败，进入了降级处理
+     * 降级不影响正常设备信息的获取，只是会造成blackBox字段超长，且无法获取设备真实IP
+     * 降级数据平均长度在2KB以内,一般不超过3KB,数据的长度取决于采集到的设备信息的长度,无法100%确定最大长度
+     */
+    NSString *blackBox = manager->getDeviceInfo();
+    NSLog(@"同盾设备指纹数据: %@", blackBox);
+    // 将blackBox随业务请求提交到您的服务端，服务端调用同盾风险决策API时需要带上这个参数
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

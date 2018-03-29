@@ -39,6 +39,6 @@
 #import "HQFontImageDictionary.h"
 #import "CLConstant.h"
 #import "UIViewController+LXNavigationItem.h"
-
+#import "FMDeviceManager.h"
 
 #endif /* PrefixHeader_pch */
