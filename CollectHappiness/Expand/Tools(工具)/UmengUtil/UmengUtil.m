@@ -28,10 +28,10 @@
     NSMutableArray *shareTargets = [[NSMutableArray alloc] initWithCapacity:5];
     NSMutableArray *operations = [[NSMutableArray alloc] initWithCapacity:2];
     
-//    if (hadInstalledWeixin) {
-//        [shareTargets addObject:dict(TARGET_WECHAT_SESSION, @"微信", @"icon-back-1")];
-//        [shareTargets addObject:dict(TARGET_WECHAT_TIMELINE, @"朋友圈", @"icon-back-6")];
-//    }
+    if (hadInstalledWeixin) {
+        [shareTargets addObject:dict(TARGET_WECHAT_SESSION, @"微信", @"icon-back-1")];
+        [shareTargets addObject:dict(TARGET_WECHAT_TIMELINE, @"朋友圈", @"icon-back-6")];
+    }
 //    if (hadInstalledQQ) {
 //        [shareTargets addObject:dict(TARGET_QQ, @"QQ", @"icon-back-5")];
 //        [shareTargets addObject:dict(TARGET_QZONE, @"QQ空间", @"icon-back-7")];
@@ -39,9 +39,9 @@
 //    if (hadInstalledSina) {
 //        [shareTargets addObject:dict(TARGET_SINA, @"微博", @"icon-back-4")];
 //    }
-//    
-    [operations addObject:dict(TARGET_COPYLINK, @"复制链接", @"icon-back-2")];
-    [operations addObject:dict(TARGET_SMS, @"手机短信", @"icon-back-3")];
+//
+//    [operations addObject:dict(TARGET_COPYLINK, @"复制链接", @"icon-back-2")];
+//    [operations addObject:dict(TARGET_SMS, @"手机短信", @"icon-back-3")];
     
     ShareView *shareView = [[ShareView alloc] initWithShareTargets:shareTargets operations:operations title:@"分享到"];
     [shareView setButtonTapped:^(NSDictionary *info) {

@@ -111,47 +111,15 @@
     };
     
     
-//    context[@"share"] = ^() {
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"方式二" message:@"这是OC原生的弹出窗" delegate:self cancelButtonTitle:@"收到" otherButtonTitles:nil];
-//            [alertView show];
-//        });
-//    };
+    context[@"share"] = ^() {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [UmengUtil shareBoardBySelfDefinedController:weakSelf photoURL:IMAGE_USER_HEADIMG titleStr:weakSelf.title descrStr:@"" shareURL:GetString(weakSelf.taskUrlString)];
+            
+        });
+    };
   
 }
-
-
-#pragma mark - 添加分享按钮
-
-- (void)addRightButton {
-    
-    //添加右边刷新按钮-----变为分享
-    WEAK_SELF;
-    [weakSelf setRightImageBarButtonItemImage:@"分享" action:^(LXButton *button) {
-        CHECK_WEAK_SELF;
-        
-        
-        weakSelf.taskUrlString = [weakSelf.webView stringByEvaluatingJavaScriptFromString:@"shareData.wxData.link"];
-        NSLog(@"taskUrlString    %@",weakSelf.taskUrlString);
-        
-        
-        if ([weakSelf.webView.request.URL.absoluteString containsString:@"app/taskapp/detail"]) {
-            weakSelf.taskUrlString = [weakSelf.webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('taskUrl').href"];
-            NSLog(@"taskUrlString    %@",weakSelf.taskUrlString);
-        }
-        
-        
-        
-        if (![GetString(weakSelf.taskUrlString) isEqualToString:@""]) {
-            [UmengUtil shareBoardBySelfDefinedController:weakSelf photoURL:IMAGE_USER_HEADIMG titleStr:weakSelf.title descrStr:@"" shareURL:GetString(weakSelf.taskUrlString)];
-        } else {
-            [UmengUtil shareBoardBySelfDefinedController:weakSelf photoURL:IMAGE_USER_HEADIMG titleStr:weakSelf.title descrStr:@"" shareURL:GetString(weakSelf.webView.request.URL.absoluteString)];
-        }
-        
-    }];
-}
-
-
 
 
 //点击返回的方法
