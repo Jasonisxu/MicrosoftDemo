@@ -102,7 +102,7 @@
     WEAK_SELF;
     JSContext *context = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     //定义好JS要调用的方法，finish就是调用的方法名
-    context[@"saoma"] = ^() {
+    context[@"iosScanCode"] = ^() {
         dispatch_async(dispatch_get_main_queue(), ^{
         
             [weakSelf goScanViewAction];
