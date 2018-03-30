@@ -101,7 +101,9 @@
     
     WEAK_SELF;
     JSContext *context = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-    //定义好JS要调用的方法，finish就是调用的方法名
+
+    
+    // 扫描二维码
     context[@"iosScanCode"] = ^() {
         dispatch_async(dispatch_get_main_queue(), ^{
         
@@ -111,14 +113,24 @@
     };
     
     
-    context[@"share"] = ^() {
+    // 分享微信
+    context[@"iosShareFriend"] = ^() {
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            [UmengUtil shareBoardBySelfDefinedController:weakSelf photoURL:IMAGE_USER_HEADIMG titleStr:weakSelf.title descrStr:@"" shareURL:GetString(weakSelf.taskUrlString)];
+            [weakSelf goIosShareFriendAction];
             
         });
     };
   
+    // 分享朋友圈
+    context[@"iosShareFriendCicle"] = ^() {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [weakSelf goIosShareFriendCicleAction];
+            
+        });
+    };
+
 }
 
 
@@ -154,7 +166,7 @@
 
 
 
-#pragma mark - 扫码
+#pragma mark - 扫描二维码
 - (void)goScanViewAction {
     WEAK_SELF;
     JSContext *context = [weakSelf.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
@@ -167,6 +179,16 @@
     }];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:ScanVC];
     [weakSelf presentViewController:nav animated:YES completion:nil];
+}
+
+#pragma mark - 分享微信
+- (void)goIosShareFriendAction {
+    NSLog(@"分享微信");
+}
+
+#pragma mark - 分享朋友圈
+- (void)goIosShareFriendCicleAction {
+    NSLog(@"分享分享朋友圈");
 }
 
 - (void)didReceiveMemoryWarning {
