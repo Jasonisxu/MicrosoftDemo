@@ -46,6 +46,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self monitorNetworking];
+    
     [self addTDSDKAction];
     
     [self addSubView];
@@ -59,8 +61,8 @@
 
 - (void)addDataAction {
     
-    [self.NewWKVC loadWithUrlString:GetString(@"http:///hiiso.xicp.cn:8060/app/shoppingmall/index_mall.html")];
-//    [self.NewWKVC loadWithUrlString:GetString(@"http://www.hxfpt.com/app/shoppingmall/index_mall.html")];
+//    [self.NewWKVC loadWithUrlString:GetString(@"http:///hiiso.xicp.cn:8060/app/shoppingmall/index_mall.html")];
+    [self.NewWKVC loadWithUrlString:GetString(@"http://www.hxfpt.com/app/shoppingmall/index_mall.html")];
 
 }
 
@@ -87,6 +89,42 @@
     
     // 使用上述参数进行SDK初始化
     manager->initWithOptions(options);
+}
+
+
+#pragma mark - ------------- 监测网络状态 -------------
+- (void)monitorNetworking
+{
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        switch (status) {
+            case -1:
+                NSLog(@"未知网络");
+                break;
+            case 0:
+                NSLog(@"网络不可达");
+                break;
+            case 1:
+            {
+                NSLog(@"GPRS网络");
+                [self.NewWKVC.webView reload];
+            }
+                break;
+            case 2:
+            {
+                NSLog(@"wifi网络");
+                [self.NewWKVC.webView reload];
+            }
+                break;
+            default:
+                break;
+        }
+        if (status == AFNetworkReachabilityStatusReachableViaWWAN || status == AFNetworkReachabilityStatusReachableViaWiFi) {
+            NSLog(@"有网");
+        }else{
+            NSLog(@"没网");
+        }
+    }];
 }
 
 
