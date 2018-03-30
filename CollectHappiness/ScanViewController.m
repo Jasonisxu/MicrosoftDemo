@@ -68,6 +68,10 @@
 
 -(void)scanView:(ReadableCodeScanView *)scanView metadata:(AVMetadataMachineReadableCodeObject *)metadata {
     LOG_D("扫描识别结果: type=%@ value=%@", metadata.type, metadata.stringValue);
+    if (self.addProductNoBlock) {
+        self.addProductNoBlock(metadata.stringValue);
+    }
+    
     [scanView stopScanning];
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }

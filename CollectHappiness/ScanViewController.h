@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ScanViewController : UIViewController
-
+@property (nonatomic, copy) void(^addProductNoBlock)(NSString *productNoString);
 @end

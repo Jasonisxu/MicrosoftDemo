@@ -98,12 +98,15 @@
     [CookieHelp cookieGetAndSaveAction];
     [self addTDSDKACtion];
 
+    
+    WEAK_SELF;
     JSContext *context = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     //定义好JS要调用的方法，finish就是调用的方法名
     context[@"saoma"] = ^() {
         dispatch_async(dispatch_get_main_queue(), ^{
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[ScanViewController new]];
-            [self presentViewController:nav animated:YES completion:nil];
+        
+            [weakSelf goScanViewAction];
+           
         });
     };
     
@@ -164,6 +167,8 @@
     
 }
 
+#pragma mark - 设备指纹
+
 - (void)addTDSDKACtion {
     // 获取设备管理器实例
     FMDeviceManager_t *manager = [FMDeviceManager sharedManager];
@@ -177,6 +182,23 @@
     NSString *blackBox = manager->getDeviceInfo();
     NSLog(@"同盾设备指纹数据: %@", blackBox);
     // 将blackBox随业务请求提交到您的服务端，服务端调用同盾风险决策API时需要带上这个参数
+}
+
+
+
+#pragma mark - 扫码
+- (void)goScanViewAction {
+    WEAK_SELF;
+    JSContext *context = [weakSelf.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+
+    ScanViewController *ScanVC = [ScanViewController new];
+    [ScanVC setAddProductNoBlock:^(NSString *productNoString) {
+        NSString *jscript = [NSString stringWithFormat:@"jumpApplyStaging(\"%@\")",productNoString];
+        // 调用JS代码
+        [context evaluateScript:jscript];
+    }];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:ScanVC];
+    [weakSelf presentViewController:nav animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

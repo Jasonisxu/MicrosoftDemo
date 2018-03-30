@@ -13,6 +13,7 @@
  */
 
 #import "NewWKViewController.h"
+#import "ScanViewController.h"
 
 @interface NewWKViewController ()<WKNavigationDelegate, WKUIDelegate>
 // 外部传来的url
@@ -21,15 +22,6 @@
 @end
 
 @implementation NewWKViewController
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    if (!self.nowUrlString) {
-        [self.webView reload];
-    }
-}
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,11 +45,6 @@
 
     NSString *header = [[self cookieArrrayAction:request] componentsJoinedByString:@";"];
     [request setValue:header forHTTPHeaderField:@"Cookie"];
-//    if (loginUserModel) {
-//        [request setValue:loginUserModel.token forHTTPHeaderField:@"token"];
-//    }
-
-    NSLog(@"request:%@",request.allHTTPHeaderFields);
     
     WEAK_SELF;
     [self.webView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id result, NSError *error) {
@@ -151,88 +138,21 @@
 // 在发送请求之前，决定是否跳转
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
     
-    // 判断是否是我们的站点
-    NSString *validDomain = GetString(navigationAction.request.URL.host);
-    if (![HEAD_URL containsString:validDomain]) {
-        decisionHandler(WKNavigationActionPolicyAllow);
-        return;
-    }
-
-    // 当前请求的Url
-    NSString *urlString = GetString(navigationAction.request.URL);
-    NSLog(@"webUrlString:  %@",urlString);
-    
-    // 请求头的一些信息
-    NSMutableURLRequest *mutableRequest = [navigationAction.request mutableCopy];
-    NSDictionary *requestHeaders = navigationAction.request.allHTTPHeaderFields;
-//    NSLog(@"requestHeaders:%@",requestHeaders);
-
-    
-    if ([urlString containsString:@"login.html"]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:LoginStateNotification object:nil];
-        decisionHandler(WKNavigationActionPolicyCancel);
-    }
-    else if ([urlString containsString:@"weixin://"] || [urlString containsString:@"alipay://"]) {
-        NSURL * wechat_url = [NSURL URLWithString:urlString];
-        if ([[UIApplication sharedApplication] canOpenURL:wechat_url]) {
-            //        NSLog(@"canOpenURL");
-            [[UIApplication sharedApplication] openURL:wechat_url];
-        }
-        decisionHandler(WKNavigationActionPolicyAllow);
-    }
-    else {
-        // 判断这个链接是不是
-        // 当前页面的 nowUrlString
-        // 订单详情 OrderDetail
-        // 付款 paypage.aspx/checkmweb/gateway.do/mobilepay
-        // 订单结算 Confirm
-        // 收货地址 address/AddressModify.aspx
-
-        
-        if ([self.nowUrlString isEqualToString:urlString] || [urlString containsString:@"OrderDetail"] || [urlString containsString:@"paypage.aspx"]
-            || [urlString containsString:@"checkmweb"] || [urlString containsString:@"gateway.do?charset=gbk"] || [urlString containsString:@"mobilepay"] || [urlString containsString:@"Confirm"] || [urlString containsString:@"address"] || [urlString containsString:@"AddressModify.aspx"]) {
-            
-//            // 添加token
-//            if (loginUserModel) {
-//                if (!requestHeaders[@"token"]) {
-//                    NSString *header = [[self cookieArrrayAction:mutableRequest] componentsJoinedByString:@";"];
-//                    [mutableRequest setValue:header forHTTPHeaderField:@"Cookie"];
-//                    [mutableRequest setValue:loginUserModel.token forHTTPHeaderField:@"token"];
-//                    [webView loadRequest:mutableRequest];
-//                    decisionHandler(WKNavigationActionPolicyCancel); // 必须实现 取消加载 不然会加载2遍
-//                    return;
-//                }
-//            }
-            
-            decisionHandler(WKNavigationActionPolicyAllow);
-            
-        } else {
-
-            NewWebViewController *WebNewUrlVC = [NewWebViewController new];
-            [WebNewUrlVC loadWithUrlString:urlString];
-            [self.navigationController pushViewController:WebNewUrlVC animated:YES];
-
-            decisionHandler(WKNavigationActionPolicyCancel);
-        }
-    }
-    
-    
-   
+    decisionHandler(WKNavigationActionPolicyAllow);
 }
 
 // 页面开始加载时调用
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
-    [HUD showLoadingToView:self.view];
 }
 
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    [HUD hide];
+    [CookieHelp cookieGetAndSaveAction];
+    [self addTDSDKACtion];
 }
 
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
-    [HUD hide];
     
 }
 
@@ -308,6 +228,22 @@
     
     return array;
 }
+
+- (void)addTDSDKACtion {
+    // 获取设备管理器实例
+    FMDeviceManager_t *manager = [FMDeviceManager sharedManager];
+    
+    /*
+     * 获取设备指纹黑盒数据，请确保在应用开启时已经对SDK进行初始化，切勿在get的时候才初始化
+     * 如果此处获取到的blackBox特别长(超过400字节)，说明初始化尚未完成(一般需要1-3秒)，或者由于网络问题导致初始化失败，进入了降级处理
+     * 降级不影响正常设备信息的获取，只是会造成blackBox字段超长，且无法获取设备真实IP
+     * 降级数据平均长度在2KB以内,一般不超过3KB,数据的长度取决于采集到的设备信息的长度,无法100%确定最大长度
+     */
+    NSString *blackBox = manager->getDeviceInfo();
+    NSLog(@"同盾设备指纹数据: %@", blackBox);
+    // 将blackBox随业务请求提交到您的服务端，服务端调用同盾风险决策API时需要带上这个参数
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
