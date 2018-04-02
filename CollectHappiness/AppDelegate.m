@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "UMMobClick/MobClick.h"
+#import "UmengUtil.h"
 
 @interface AppDelegate ()
 
