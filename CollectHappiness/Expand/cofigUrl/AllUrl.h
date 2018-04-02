@@ -18,10 +18,10 @@
 //#define UmengWXAppID       @"wx3e4111c7a47dc686"
 
 //友盟统计
-#define UmengKey           @"59b6339d07fe656aad000613"
+#define UmengKey           @"57b29a75e0f55af31a0028f6"
 //微信分享
-#define UmengWXAppSecret   @"8844540e40ec0558a19743a59691ffdf"
-#define UmengWXAppID       @"wx3e4111c7a47dc686"
+#define UmengWXAppSecret   @"ed5ac11e0df7d6fdf6520a18cb903588"
+#define UmengWXAppID       @"wxebe470e02334276c"
 
 
 #define MAIN_URL                          HEAD_URL @""

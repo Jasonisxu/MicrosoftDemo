@@ -8,8 +8,9 @@
 
 #import "AppDelegate.h"
 #import "UmengUtil.h"
+#import <WXApi.h>
 
-@interface AppDelegate ()
+@interface AppDelegate ()<WXApiDelegate>
 
 @end
 
@@ -71,5 +72,13 @@
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:UmengWXAppID appSecret:UmengWXAppSecret redirectURL:@""];
 
 }
+
+// 支持所有iOS系统
+- (BOOL)application:(UIApplication *)app
+            openURL:(NSURL *)url
+            options:(NSDictionary<NSString *,id> *)options {
+    return  [WXApi handleOpenURL:url delegate:self];
+}
+
 
 @end

@@ -187,16 +187,28 @@
     NSString *imgUrlStr = [self.webView stringByEvaluatingJavaScriptFromString:@"imgUrl"];
     NSString *titleStr = [self.webView stringByEvaluatingJavaScriptFromString:@"title"];
     NSString *descStr = [self.webView stringByEvaluatingJavaScriptFromString:@"desc"];
+    NSString *urlStr = [self.webView stringByEvaluatingJavaScriptFromString:@"url"];
 
     NSLog(@"%@",imgUrlStr);
     NSLog(@"%@",titleStr);
     NSLog(@"%@",descStr);
-    [UmengUtil shareWebPageToPlatformType:UMSocialPlatformType_WechatSession controller:self photoURL:imgUrlStr titleStr:titleStr descrStr:descStr shareURL:@""];
+    NSLog(@"%@",urlStr);
+    [UmengUtil shareWebPageToPlatformType:UMSocialPlatformType_WechatSession controller:self photoURL:imgUrlStr titleStr:titleStr descrStr:descStr shareURL:urlStr];
 }
 
 #pragma mark - 分享朋友圈
 - (void)goIosShareFriendCicleAction {
     NSLog(@"分享分享朋友圈");
+    NSString *imgUrlStr = [self.webView stringByEvaluatingJavaScriptFromString:@"imgUrl"];
+    NSString *titleStr = [self.webView stringByEvaluatingJavaScriptFromString:@"title"];
+    NSString *descStr = [self.webView stringByEvaluatingJavaScriptFromString:@"desc"];
+    NSString *urlStr = [self.webView stringByEvaluatingJavaScriptFromString:@"url"];
+    
+    NSLog(@"%@",imgUrlStr);
+    NSLog(@"%@",titleStr);
+    NSLog(@"%@",descStr);
+    NSLog(@"%@",urlStr);
+    [UmengUtil shareWebPageToPlatformType:UMSocialPlatformType_WechatTimeLine controller:self photoURL:imgUrlStr titleStr:titleStr descrStr:descStr shareURL:urlStr];
 }
 
 - (void)didReceiveMemoryWarning {

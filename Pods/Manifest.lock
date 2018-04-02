@@ -53,6 +53,7 @@ PODS:
     - UMengUShare/Core
   - UMengUShare/UI (6.4.8.2):
     - UMengUShare/Core
+  - WechatOpenSDK (1.8.2)
   - WZLBadge (1.2.6)
   - ZYCornerRadius (1.0.2)
 
@@ -74,6 +75,7 @@ DEPENDENCIES:
   - UMengUShare/Social/ReducedSina
   - UMengUShare/Social/ReducedWeChat
   - UMengUShare/UI
+  - WechatOpenSDK
   - WZLBadge
   - ZYCornerRadius (~> 1.0.2)
 
@@ -92,9 +94,10 @@ SPEC CHECKSUMS:
   TZImagePickerController: 34ecb53af8c349964394407e42b6e54e22589ebe
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
   UMengUShare: 370d180101e13ee0227ae657ab119ba97243d2b3
+  WechatOpenSDK: 676feec516a11173eafd1fe64b10d27babf28701
   WZLBadge: 9ec779dcfd94c825518b395e8315fccaabff1bfa
   ZYCornerRadius: f0af817be7805b5c63d793042ca7a03f81e14069
 
-PODFILE CHECKSUM: 44c50d367f170d448ebe3210061da2763bea2274
+PODFILE CHECKSUM: 16b6a07e6d9ce22cd2b3839f7e23bfead828635b
 
 COCOAPODS: 1.2.0

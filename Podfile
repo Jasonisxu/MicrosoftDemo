@@ -22,5 +22,6 @@ pod 'UMengUShare/Social/ReducedQQ'
 pod 'UMengUShare/Social/ReducedSina'
 pod 'UMengAnalytics-NO-IDFA'
 pod 'pop'
+pod 'WechatOpenSDK'
 
 end
