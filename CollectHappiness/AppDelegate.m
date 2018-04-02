@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "UMMobClick/MobClick.h"
 
 @interface AppDelegate ()
 
@@ -22,8 +23,12 @@
     
     [CookieHelp cookieGetAction];
     
+    //友盟社会化分享和统计
+    [self umengShareForOtherApp];
+    
     return YES;
 }
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -52,5 +57,19 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+
+#pragma mark Umeng社会化分享
+- (void)umengShareForOtherApp {
+
+    /* 打开调试日志 */
+    [[UMSocialManager defaultManager] openLog:YES];
+    
+    /* 设置友盟appkey */
+    [[UMSocialManager defaultManager] setUmSocialAppkey:UmengKey];
+    
+    /* 设置微信的appKey和appSecret */
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:UmengWXAppID appSecret:UmengWXAppSecret redirectURL:@""];
+
+}
 
 @end

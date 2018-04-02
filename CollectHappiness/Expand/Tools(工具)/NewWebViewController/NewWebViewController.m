@@ -114,7 +114,7 @@
     
     
     // 分享微信
-    context[@"shareFriend"] = ^() {
+    context[@"iosShareFriend"] = ^() {
         dispatch_async(dispatch_get_main_queue(), ^{
             
             [weakSelf goIosShareFriendAction];
@@ -123,7 +123,7 @@
     };
   
     // 分享朋友圈
-    context[@"shareFriendCicle"] = ^() {
+    context[@"iosShareFriendCicle"] = ^() {
         dispatch_async(dispatch_get_main_queue(), ^{
             
             [weakSelf goIosShareFriendCicleAction];
@@ -191,7 +191,7 @@
     NSLog(@"%@",imgUrlStr);
     NSLog(@"%@",titleStr);
     NSLog(@"%@",descStr);
-
+    [UmengUtil shareWebPageToPlatformType:UMSocialPlatformType_WechatSession controller:self photoURL:imgUrlStr titleStr:titleStr descrStr:descStr shareURL:@""];
 }
 
 #pragma mark - 分享朋友圈

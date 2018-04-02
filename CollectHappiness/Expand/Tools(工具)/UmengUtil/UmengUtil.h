@@ -19,4 +19,5 @@ static const int TARGET_SMS             = 6;
 
 @interface UmengUtil : NSObject
 + (void)shareBoardBySelfDefinedController:(UIViewController *)controller photoURL:(NSString *)photoURL titleStr:(NSString *)titleStr descrStr:(NSString *)descrStr shareURL:(NSString *)shareURL;
++ (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType controller:(UIViewController *)controller photoURL:(NSString *)photoURL titleStr:(NSString *)titleStr descrStr:(NSString *)descrStr shareURL:(NSString *)shareURL;
 @end
