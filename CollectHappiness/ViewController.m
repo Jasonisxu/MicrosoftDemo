@@ -61,8 +61,8 @@
 
 - (void)addDataAction {
     
-//    [self.NewWKVC loadWithUrlString:GetString(@"http:///hiiso.xicp.cn:8060/app/shoppingmall/index_mall.html")];
-    [self.NewWKVC loadWithUrlString:GetString(@"http://www.hxfpt.com/app/shoppingmall/index_mall.html")];
+    [self.NewWKVC loadWithUrlString:GetString(@"http:///hiiso.xicp.cn:8060/app/shoppingmall/index_mall.html")];
+//    [self.NewWKVC loadWithUrlString:GetString(@"http://www.hxfpt.com/app/shoppingmall/index_mall.html")];
 
 }
 

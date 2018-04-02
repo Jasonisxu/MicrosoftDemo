@@ -114,7 +114,7 @@
     
     
     // 分享微信
-    context[@"iosShareFriend"] = ^() {
+    context[@"shareFriend"] = ^() {
         dispatch_async(dispatch_get_main_queue(), ^{
             
             [weakSelf goIosShareFriendAction];
@@ -123,7 +123,7 @@
     };
   
     // 分享朋友圈
-    context[@"iosShareFriendCicle"] = ^() {
+    context[@"shareFriendCicle"] = ^() {
         dispatch_async(dispatch_get_main_queue(), ^{
             
             [weakSelf goIosShareFriendCicleAction];
@@ -184,6 +184,14 @@
 #pragma mark - 分享微信
 - (void)goIosShareFriendAction {
     NSLog(@"分享微信");
+    NSString *imgUrlStr = [self.webView stringByEvaluatingJavaScriptFromString:@"imgUrl"];
+    NSString *titleStr = [self.webView stringByEvaluatingJavaScriptFromString:@"title"];
+    NSString *descStr = [self.webView stringByEvaluatingJavaScriptFromString:@"desc"];
+
+    NSLog(@"%@",imgUrlStr);
+    NSLog(@"%@",titleStr);
+    NSLog(@"%@",descStr);
+
 }
 
 #pragma mark - 分享朋友圈
