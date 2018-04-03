@@ -21,6 +21,8 @@
 //员工任务详情分享的url
 @property (nonatomic, copy) NSString *taskUrlString;
 
+// js框架
+@property (nonatomic, strong) JSContext *context;
 @end
 
 @implementation NewWebViewController
@@ -83,6 +85,13 @@
     return _webView;
 }
 
+- (JSContext *)context {
+    if (_context == nil) {
+        _context =  [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+    }
+    return _context;
+}
+
 #pragma mark - UIWebViewDelegate代理方法
 #pragma mark 开始加载
 //是否允许加载网页，也可获取js要打开的url，通过截取此url可与js交互
@@ -96,15 +105,13 @@
 //网页加载完成
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [CookieHelp cookieGetAndSaveAction];
-    [self addTDSDKACtion];
 
     
     WEAK_SELF;
-    JSContext *context = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
 
     
     // 扫描二维码
-    context[@"iosScanCode"] = ^() {
+    weakSelf.context[@"iosScanCode"] = ^() {
         dispatch_async(dispatch_get_main_queue(), ^{
         
             [weakSelf goScanViewAction];
@@ -114,7 +121,7 @@
     
     
     // 分享微信
-    context[@"iosShareFriend"] = ^() {
+    weakSelf.context[@"iosShareFriend"] = ^() {
         dispatch_async(dispatch_get_main_queue(), ^{
             
             [weakSelf goIosShareFriendAction];
@@ -123,7 +130,7 @@
     };
   
     // 分享朋友圈
-    context[@"iosShareFriendCicle"] = ^() {
+    weakSelf.context[@"iosShareFriendCicle"] = ^() {
         dispatch_async(dispatch_get_main_queue(), ^{
             
             [weakSelf goIosShareFriendCicleAction];
@@ -131,6 +138,14 @@
         });
     };
 
+    // 上传设备指纹
+    weakSelf.context[@"iosFingerPrint"] = ^() {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [weakSelf addTDSDKACtion];
+
+        });
+    };
 }
 
 
@@ -162,6 +177,11 @@
     NSString *blackBox = manager->getDeviceInfo();
     NSLog(@"同盾设备指纹数据: %@", blackBox);
     // 将blackBox随业务请求提交到您的服务端，服务端调用同盾风险决策API时需要带上这个参数
+    
+    
+    NSString *jscript = [NSString stringWithFormat:@"deviceFingerPrint(\"%@\")",blackBox];
+    // 调用JS代码
+    [self.context evaluateScript:jscript];
 }
 
 
@@ -169,13 +189,11 @@
 #pragma mark - 扫描二维码
 - (void)goScanViewAction {
     WEAK_SELF;
-    JSContext *context = [weakSelf.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-
     ScanViewController *ScanVC = [ScanViewController new];
     [ScanVC setAddProductNoBlock:^(NSString *productNoString) {
         NSString *jscript = [NSString stringWithFormat:@"jumpApplyStaging(\"%@\")",productNoString];
         // 调用JS代码
-        [context evaluateScript:jscript];
+        [weakSelf.context evaluateScript:jscript];
     }];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:ScanVC];
     [weakSelf presentViewController:nav animated:YES completion:nil];
@@ -189,9 +207,9 @@
     NSString *descStr = [self.webView stringByEvaluatingJavaScriptFromString:@"desc"];
     NSString *urlStr = [self.webView stringByEvaluatingJavaScriptFromString:@"url"];
 
-    NSLog(@"%@",imgUrlStr);
-    NSLog(@"%@",titleStr);
-    NSLog(@"%@",descStr);
+//    NSLog(@"%@",imgUrlStr);
+//    NSLog(@"%@",titleStr);
+//    NSLog(@"%@",descStr);
     NSLog(@"%@",urlStr);
     [UmengUtil shareWebPageToPlatformType:UMSocialPlatformType_WechatSession controller:self photoURL:imgUrlStr titleStr:titleStr descrStr:descStr shareURL:urlStr];
 }
@@ -204,9 +222,9 @@
     NSString *descStr = [self.webView stringByEvaluatingJavaScriptFromString:@"desc"];
     NSString *urlStr = [self.webView stringByEvaluatingJavaScriptFromString:@"url"];
     
-    NSLog(@"%@",imgUrlStr);
-    NSLog(@"%@",titleStr);
-    NSLog(@"%@",descStr);
+//    NSLog(@"%@",imgUrlStr);
+//    NSLog(@"%@",titleStr);
+//    NSLog(@"%@",descStr);
     NSLog(@"%@",urlStr);
     [UmengUtil shareWebPageToPlatformType:UMSocialPlatformType_WechatTimeLine controller:self photoURL:imgUrlStr titleStr:titleStr descrStr:descStr shareURL:urlStr];
 }
