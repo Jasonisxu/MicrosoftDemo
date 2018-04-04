@@ -1003,7 +1003,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = C6H97AN73G;
+				DEVELOPMENT_TEAM = 4X5Q4Z42WV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CollectHappiness/TDSDK",
@@ -1016,7 +1016,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/CollectHappiness/TDSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wicrenet.wiseSeller;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hxfpt.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1028,7 +1028,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = C6H97AN73G;
+				DEVELOPMENT_TEAM = 4X5Q4Z42WV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CollectHappiness/TDSDK",
@@ -1041,7 +1041,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/CollectHappiness/TDSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wicrenet.wiseSeller;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hxfpt.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
