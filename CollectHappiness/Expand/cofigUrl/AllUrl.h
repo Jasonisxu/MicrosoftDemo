@@ -9,22 +9,16 @@
 #ifndef AllUrl_h
 #define AllUrl_h
 
-#define HEAD_URL     @""
-
-////友盟统计
-//#define UmengKey           @"5ac1b07ff29d982deb000023"
-////微信分享
-//#define UmengWXAppSecret   @"8844540e40ec0558a19743a59691ffdf"
-//#define UmengWXAppID       @"wx3e4111c7a47dc686"
 
 //友盟统计
-#define UmengKey           @"57b29a75e0f55af31a0028f6"
+#define UmengKey           @"5ac1b07ff29d982deb000023"
 //微信分享
-#define UmengWXAppSecret   @"ed5ac11e0df7d6fdf6520a18cb903588"
-#define UmengWXAppID       @"wxebe470e02334276c"
+#define UmengWXAppSecret   @"a4f38ee6816221156c11b3d2cea7318f"
+#define UmengWXAppID       @"wx11218fa38f851d6b"
 
 
+
+#define HEAD_URL     @""
 #define MAIN_URL                          HEAD_URL @""
-
 
 #endif /* AllUrl_h */
