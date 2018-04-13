@@ -179,7 +179,7 @@
     // 将blackBox随业务请求提交到您的服务端，服务端调用同盾风险决策API时需要带上这个参数
     
     
-    NSString *jscript = [NSString stringWithFormat:@"deviceFingerPrint(\"%@\")",blackBox];
+    NSString *jscript = [NSString stringWithFormat:@"deviceFingerPrint(\"%@\",\"hfqios\")",blackBox];
     // 调用JS代码
     [self.context evaluateScript:jscript];
 }
